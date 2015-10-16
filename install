@@ -1,0 +1,26 @@
+#!/bin/bash
+/show/description "Installation de Yana Server"
+
+#Install wiringPi
+/show/listecho "Installation de wiringPi pour les GPIO" $OK
+/pi/installWiringPi
+
+#Clone kana
+/show/listecho "github:ldleman/yana-server -> /do/yana/www" $OK
+/system/gitcloner ldleman/yana-server /do/yana/www
+
+#Nginx server installation
+/show/listecho "Installation de nginx (Serveur web)" $OK
+/pi/install nginx
+
+#Install sqlite / debug / php libraries
+/do/messagebox "Installation de SQLite"
+/do/nginx/installSQLite
+/do/nginx/debug
+
+#Nginx server directory to /do/yana/www
+/show/listecho "nginx:/do/yana/www" $OK
+/do/nginx/dir /opt/piget/yana/www
+
+/do/yana/check
+

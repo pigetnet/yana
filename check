@@ -1,0 +1,6 @@
+#!/bin/bash
+echo "Verification des droits roots"
+sudo chown -R www-data:www-data /do/yana/www
+sudo chown -v root:www-data /do/yana/www/plugins/radioRelay/radioEmission
+sudo chmod -v +s /do/yana/www/plugins/radioRelay/radioEmission
+
